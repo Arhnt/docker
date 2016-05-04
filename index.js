@@ -1,6 +1,7 @@
 var casper = require('casper').create();
 var utils = require('utils');
 var system = require('system');
+var fs = require('fs');
 
 var entity = JSON.parse(casper.cli.get('entity'));
 
@@ -9,7 +10,11 @@ result.scraperId = guid();
 result.entity = entity;
 result.entity.id = Math.floor(Math.random() * 1000) + 1;
 
-system.stdout.writeLine(JSON.stringify(result));
+var file = casper.cli.get('output');
+if (file)
+  fs.write(file, JSON.stringify(result));
+else
+  system.stdout.writeLine(JSON.stringify(result));
 
 casper.exit();
 
