@@ -4,6 +4,8 @@ var system = require('system');
 var fs = require('fs');
 
 var entity = JSON.parse(casper.cli.get('entity'));
+var configuration = JSON.parse(casper.cli.get('configuration'));
+console.log("Scraping " + JSON.stringify(configuration));
 
 var result = new Object();
 result.scraperId = guid();
